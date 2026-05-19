@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StdMainUI : DaniTechUIBase
+public class Std_MainUI : DaniTechUIBase
 {
     [SerializeField] private DaniTechUIButton Button_StashInventory; 
 
@@ -17,11 +17,11 @@ public class StdMainUI : DaniTechUIBase
 
         if (_isUIOpened)
         {
-            DaniTechUIManager.Instance.OpenContentUI(DaniTechUIType.StdStashInventoryUI);
+            DaniTechUIManager.Instance.OpenContentUI(DaniTechUIType.Std_StashInventoryUI);
         }
         else
         {
-            DaniTechUIManager.Instance.CloseContentUI(DaniTechUIType.StdStashInventoryUI);
+            DaniTechUIManager.Instance.CloseContentUI(DaniTechUIType.Std_StashInventoryUI);
         }
     }
 }

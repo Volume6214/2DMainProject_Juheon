@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StdStashInventoryUI : DaniTechUIBase
+public class Std_StashInventoryUI : DaniTechUIBase
 {
     private void Start()
     {

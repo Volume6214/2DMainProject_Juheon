@@ -19,9 +19,10 @@ public enum DaniTechUIType
     DNLoadingUI,
     DNDialogueUI,
     DNInfoBookUI,
-    StdRobbyUI,
-    StdMainUI,
-    StdStashInventoryUI
+    Std_RobbyUI,
+    Std_MainUI,
+    Std_StashInventoryUI,
+    Std_GameBookUI,
 }
 
 public static class DaniTechUIManagerExtension
@@ -39,7 +40,7 @@ public static class DaniTechUIManagerExtension
     public static void ShowStartupUIOnGameStart(this DaniTechUIManager uiManager)
     {
         uiManager.OpenLoadingUI();
-        uiManager.OpenUI(DaniTechUIRootType.ContentUI, DaniTechUIType.StdRobbyUI);
+        uiManager.OpenUI(DaniTechUIRootType.ContentUI, DaniTechUIType.Std_RobbyUI);
         uiManager.OpenUI(DaniTechUIRootType.MainUI, DaniTechUIType.DNMainUI);
         // 게임 로비 UI를 여기서 오픈해주자 -> uiManager.
         // MainUI도
@@ -121,17 +122,17 @@ public static class DaniTechUIManagerExtension
     public static void OpenStdRobbyUI(this DaniTechUIManager uiManager)
     {
         // ContentUI 루트 타입과 StdRobbyUI 타입을 던져 생성을 요청
-        var uiBase = uiManager.OpenContentUI(DaniTechUIType.StdRobbyUI);
+        var uiBase = uiManager.OpenContentUI(DaniTechUIType.Std_RobbyUI);
         if (uiBase == null)
         {
-            Debug.LogWarning($"UI가 생성되지 않았습니다: {DaniTechUIType.StdRobbyUI}");
+            Debug.LogWarning($"UI가 생성되지 않았습니다: {DaniTechUIType.Std_RobbyUI}");
             return;
         }
     }
 
     public static void CloseStdRobbyUI(this DaniTechUIManager uiManager)
     {
-        uiManager.CloseContentUI(DaniTechUIType.StdRobbyUI);
+        uiManager.CloseContentUI(DaniTechUIType.Std_RobbyUI);
     }
 }
 
