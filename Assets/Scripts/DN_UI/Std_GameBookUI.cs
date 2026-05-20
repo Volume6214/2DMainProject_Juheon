@@ -26,7 +26,7 @@ public class Std_GameBookUI : DaniTechUIBase
 
     private void OnEnable()
     {
-        // 이 UI가 열릴때 스슬, 기본적으로 아이템 도감안에 있어야하는 데이터들을 불러온다.
+        // 이 UI가 열릴때, 아이템 도감안에 있어야하는 데이터들을 불러온다.
         ReadItemListAndCreateSlot();
 
         Button_CloseUI.BindOnClickButtonEvent(Onclick_CloseGameBookUI);
@@ -53,8 +53,10 @@ public class Std_GameBookUI : DaniTechUIBase
 
     private void ReadItemListAndCreateSlot()
     {
+        Debug.Log("디버그테스트");
+
         // 데이터를 읽어와서 순회(foreach)하면서 아이템들을 도감 리스트에 표기
-        var dataList = DaniTechGameDataManager.Instance.ItemDataList;
+        var dataList = DaniTechGameDataManager.Instance.StdBazaarItemDataList;
         foreach (var dataKv in dataList)
         {
             var data = dataKv.Value;
@@ -92,7 +94,7 @@ public class Std_GameBookUI : DaniTechUIBase
 
     private void OnClickChildSlotSelected(string slotDataId)
     {
-        var currentSelectedData = DaniTechGameDataManager.Instance.GetDNItemData(slotDataId);
+        var currentSelectedData = DaniTechGameDataManager.Instance.GetStdBazaarItem(slotDataId);
         if (currentSelectedData == null) return;
         Text_MainName.text = currentSelectedData.Name;
         Text_Description.text = currentSelectedData.Description;

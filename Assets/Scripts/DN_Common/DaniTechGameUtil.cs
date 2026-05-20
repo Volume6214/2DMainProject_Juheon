@@ -19,6 +19,7 @@ public static class DaniTechGameUtil
         DaniTechGameDataManager.Instance.LoadWeaponData("Weapon");
         DaniTechGameDataManager.Instance.LoadCostumeData("Costume");
         DaniTechGameDataManager.Instance.LoadDNItemData("DNItem");
+        DaniTechGameDataManager.Instance.LoadStdBazaarItemData("StdBazaarItem");
         DaniTechGameDataManager.Instance.LoadDNDialogueData();
         DaniTechGameDataManager.Instance.LoadAll();
     }
@@ -48,11 +49,19 @@ public static class DaniTechGameUtil
 
     public static async UniTask<Sprite> LoadAndSetSpriteImage(Image targetImage, string spritePath)
     {
+        Debug.Log("디버그체크");
+            
+        
         Sprite sprite = await DaniTechResourceManager.Inst.LoadSprite(spritePath);
         if (sprite != null)
         {
             targetImage.sprite = sprite;
         }
+        else
+        {
+            Debug.LogError($"{sprite}를 찾을 수 없습니다! 어드레서블 설정이 되어 있는지 확인해주세요.");
+        }
+
         return sprite;
     }
 

@@ -41,13 +41,17 @@ public class Std_GameBookSlotUI : MonoBehaviour
 
     public void InitSlot(string dataId, Action<string> onClickCallBack /*TableType*/) // TODO: 나중에 카테고리에 따라 다른 데이터를 받아올 수 있도록 파라미터를 추가해서 구별할 필요가 있다.
     {
-        var itemData = DaniTechGameDataManager.Instance.GetDNItemData(dataId);
-        if (itemData == null) return;
+        var StdBazaarData = DaniTechGameDataManager.Instance.GetStdBazaarItem(dataId);
+        if (StdBazaarData == null) return;
 
-        Text_MainName.text = itemData.Name;
+        Text_MainName.text = StdBazaarData.Name;
 
-        string iconPath = itemData.IconPath;
-        if (string.IsNullOrEmpty(itemData.IconPath) == true) return; // 혹시 누군가 비울 수 있으니 Null체크
+        string defaultIconPath = "Icon/Default_Icon";
+
+        string iconPath = string.IsNullOrEmpty(StdBazaarData.IconPath) ? defaultIconPath : StdBazaarData.IconPath;
+
+        //string iconPath = StdBazaarData.IconPath;
+        //if (string.IsNullOrEmpty(StdBazaarData.IconPath) == true) return; // 혹시 누군가 비울 수 있으니 Null체크
         
         // 이미지에 아이콘, 스프라이트 소스 불러와서 표기
         DaniTechGameUtil.LoadAndSetSpriteImage(Image_MainIcon, iconPath).Forget(); // 아이콘이 비어있지 않다면 아이콘을 불러와서 세팅

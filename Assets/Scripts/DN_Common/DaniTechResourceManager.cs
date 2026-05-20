@@ -132,6 +132,7 @@ public class DaniTechResourceManager : MonoBehaviour
 
     public async UniTask<Sprite> LoadSprite(string address)
     {
+        address = "Icon/Default_Icon";
         // 1. 이미 로드된 스프라이트인지 확인 (캐시 활용)
         if (_handles.TryGetValue(address, out AsyncOperationHandle handle))
         {

@@ -92,3 +92,21 @@ public class DNMonsterData : GameDataBase
     public string IconPath;
     public string PrefabPath;
 }
+
+[System.Serializable]
+public class StdBazaarItemData : GameDataBase
+{
+    public string Name;
+    public string ItemType;
+    public int SizeX;
+    public int BuyPrice;
+    public int SellPrice;
+    public string TriggerType;
+    public string EffectType1;
+    public string EffectType2;
+    public int Value1;
+    public int Value2;
+    public float CoolDown;
+    public string IconPath;
+    public string Description;
+}

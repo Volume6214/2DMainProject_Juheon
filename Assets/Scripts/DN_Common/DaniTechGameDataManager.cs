@@ -35,6 +35,7 @@ public class DaniTechGameDataManager : MonoBehaviour
     public Dictionary<string, DNDialogueData> DialogueDataList { get; private set; } = new Dictionary<string, DNDialogueData>();
     public Dictionary<string, DNFieldObjectData> FieldObjectDataList { get; private set; } = new Dictionary<string, DNFieldObjectData>();
     public Dictionary<string, DNMonsterData> MonsterDataList { get; private set; } = new Dictionary<string, DNMonsterData>();
+    public Dictionary<string, StdBazaarItemData> StdBazaarItemDataList { get; private set; } = new Dictionary<string, StdBazaarItemData>();
 
     private Dictionary<string, T> LoadData<T>(string tableName) where T : GameDataBase
     {
@@ -52,8 +53,13 @@ public class DaniTechGameDataManager : MonoBehaviour
             return new Dictionary<string, T>();
         }
 
-        try
+        /*if (tableName == "StdBazaarItemData")
         {
+            Debug.Log(textAsset.name);
+        }*/
+
+        //try
+        //{
             string jsonString = textAsset.text;
 
             // 4. JsonUtility용 Wrapper 트릭 적용
@@ -66,11 +72,11 @@ public class DaniTechGameDataManager : MonoBehaviour
                 // ToDictionary를 사용하려면 각 클래스(T)에 Id 필드가 있어야 합니다.
                 return wrapper.items.ToDictionary(item => item.Id.ToString());
             }
-        }
-        catch (Exception ex)
+        //}
+        /*catch (Exception ex)
         {
             Debug.LogError($"[{typeof(T).Name} JSON 로드 오류] {ex.Message}");
-        }
+        }*/
 
         return new Dictionary<string, T>();
     }
@@ -104,6 +110,10 @@ public class DaniTechGameDataManager : MonoBehaviour
     {
         DialogueGroupDataList = LoadData<DNDialogueGroupData>("DNDialogueGroup");
         DialogueDataList = LoadData<DNDialogueData>("DNDialogue");
+    }
+    public void LoadStdBazaarItemData(string jsonPath)
+    {
+        StdBazaarItemDataList = LoadData<StdBazaarItemData>(jsonPath);
     }
 
     public void LoadAll()
@@ -177,5 +187,11 @@ public class DaniTechGameDataManager : MonoBehaviour
         if (FieldObjectDataList == null || string.IsNullOrEmpty(dataId)) return null;
 
         return FieldObjectDataList.TryGetValue(dataId, out var data) ? data : null;
+    }
+
+    public StdBazaarItemData GetStdBazaarItem(string id)
+    {
+        if (StdBazaarItemDataList == null || string.IsNullOrEmpty(id)) return null;
+        return StdBazaarItemDataList.TryGetValue(id, out var data) ? data : null;
     }
 }
